@@ -61,7 +61,7 @@ class Screen1 extends React.Component {
         return (
             <div className="container">
 
-                Hello!
+                Hello W!
                 <select value={perPage} onChange={this.handleChangePerPage}>
                     <option value={5}>5</option>
                     <option value={10}>10</option>
