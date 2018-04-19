@@ -1,0 +1,18 @@
+@import (reference) "../../style.less";
+
+.page-numbers {
+	display: flex;
+	list-style: none;
+	font-size: 76%;
+	& > * {
+		cursor: pointer;
+		color: blue;
+		line-height: 1.4rem;
+		min-width: 1.4rem;
+		text-align: center;
+		&:hover,
+		&.active {
+			background-color: #fff;
+		}
+	}
+}

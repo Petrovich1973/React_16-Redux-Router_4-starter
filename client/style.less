@@ -1,0 +1,117 @@
+@default                : transparent;
+@primary                : #1667af;
+@secondary              : #a5a5a5;//#757575
+@danger                 : #d23939;
+@success                : #47d08b;
+
+@light                  : #fff;
+@dark                   : #000;
+    
+    
+    
+body {    
+	font-size           : 16px;
+	font-family         : 'Roboto';
+	color               : @dark;
+	background-color    : rgba(0, 0, 0, .03);
+}    
+    
+h1,     
+h2,     
+h3,     
+h4 {    
+	text-transform      : uppercase;
+}    
+    
+input[type='text'],    
+button {    
+	border              : 1px solid @secondary;
+	padding             : .4rem .8rem;
+	outline             : none;
+}    
+input[type='text'] {    
+	border-color        : @secondary;	
+	&:focus {    
+		border-color    : @primary;
+	}    
+}    
+button {    
+	cursor              : pointer;          
+	&:hover {    
+		transform       : translateY(-.06rem);
+	}    
+	&:active {    
+		transform       : translateY(.06rem);
+	}    
+	&:disabled {    
+		opacity         : .4;
+		cursor          : not-allowed;
+		transform       : translateY(0);
+	}    
+}    
+    
+.box-default {    
+	background          : @default;
+	border-color        : @dark;
+	color               : @dark;
+}         
+.box-primary {         
+	background          : @primary;
+	border-color        : @primary;
+	color               : @light;
+}         
+.box-secondary {         
+	background          : @secondary;
+	border-color        : @secondary;
+	color               : @light;
+}         
+.box-danger {         
+	background          : @danger;
+	border-color        : @danger;
+	color               : @light;
+}    
+.box-success {         
+	background          : @success;
+	border-color        : @success;
+	color               : @light;
+}    
+    
+.text-light {
+	color               : @light;
+}         
+.text-primary {    
+	color               : @primary;
+}         
+.text-secondary {    
+	color               : @secondary;
+}         
+.text-danger {    
+	color               : @danger;
+}    
+.text-success {    
+	color               : @success;
+}    
+    
+.action {    
+	cursor              : pointer;
+	display             : inline-block;
+	&:hover {    
+		transform       : translateY(-.06rem);
+		text-shadow     : 0 .06rem @dark;
+	}    
+	&:active {    
+		transform       : translateY(.06rem);
+	}    
+}    
+    
+.container {    
+	margin              : 0 auto;
+	max-width           : 1200px;
+	padding             : 1rem;
+	box-sizing          : border-box;
+}
+
+.flex {
+	display             : flex;
+	box-sizing          : border-box;
+}
