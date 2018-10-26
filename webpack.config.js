@@ -1,56 +1,40 @@
-var webpack = require('webpack');
-const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
-// const CleanCSSPlugin = require("less-plugin-clean-css");
-
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
-    entry: "./client/index.js",
-    output: {
-        path: __dirname + '/public/build/',
-        publicPath: "build/",
-        filename: "bundle.js"
-    },
-    module: {
-        loaders: [
-            {
-                test: /\.less$/,
-                exclude: /^node_modules$/,
-                loader: ExtractTextWebpackPlugin.extract({
-                    fallback: "style-loader",
-                    use: [{
-                        loader: "css-loader"
-                    },{
-                        loader: "autoprefixer-loader"
-                    },{
-                        loader: "less-loader"
-                    }]
-                })
-            },
-            {
-                test: /\.jsx?$/,
-                exclude: /(node_modules|bower_components)/,
-                loader: 'babel-loader',
-                query: {
-                    presets: ['react', 'es2015', 'stage-0'],
-                    plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy']
-                }
-            },
-            {
-                test: /\.json$/,
-                loader: "json-loader"
-            }
-        ]
-    },
+  entry: { main: './client/index.js' },
+  output: {
+    path: path.resolve(__dirname, 'public/build'),
+    filename: 'bundle.js'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader"
+        }
+      },
+      {
+        test: /\.less$/,
+        // use: [  'style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'less-loader', 'postcss-loader']
+        use: ExtractTextPlugin.extract(
+          {
+            fallback: 'style-loader',
+            use: [
+                'css-loader', 
+                'less-loader',
+                'postcss-loader'
+            ]
+          })
+      }
+    ]
+  },
     plugins: [
-        new webpack.DefinePlugin({
-            'process.env': {
-                'NODE_ENV': JSON.stringify('production')
-            }
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: true
-            }
-        }),
-        new ExtractTextWebpackPlugin( "bundle.css" )
+        // new MiniCssExtractPlugin({
+        //   filename: 'bundle.css',
+        // }),
+        new ExtractTextPlugin( "bundle.css" )
     ]
 };

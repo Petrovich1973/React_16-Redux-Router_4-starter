@@ -1,10 +1,6 @@
-import React from 'react'
- 
-import {
-  NavLink
-} from            'react-router-dom';
-
-import            './Navigation.less';
+import React from 'react' 
+import { NavLink } from 'react-router-dom';
+import './Navigation.less';
  
 export default class Navigation extends React.Component {
  
