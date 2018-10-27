@@ -26,14 +26,17 @@ button {
   cursor: pointer;
 }
 button:hover {
+  -webkit-transform: translateY(-0.06rem);
   transform: translateY(-0.06rem);
 }
 button:active {
+  -webkit-transform: translateY(0.06rem);
   transform: translateY(0.06rem);
 }
 button:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+  -webkit-transform: translateY(0);
   transform: translateY(0);
 }
 .box-default {
@@ -81,10 +84,12 @@ button:disabled {
   display: inline-block;
 }
 .action:hover {
+  -webkit-transform: translateY(-0.06rem);
   transform: translateY(-0.06rem);
   text-shadow: 0 0.06rem #000;
 }
 .action:active {
+  -webkit-transform: translateY(0.06rem);
   transform: translateY(0.06rem);
 }
 .container {
@@ -94,19 +99,10 @@ button:disabled {
   box-sizing: border-box;
 }
 .flex {
-  display: -ms-flexbox;
   display: flex;
   box-sizing: border-box;
 }
-.list > * {
-  padding: 4px 14px;
-  margin: 0;
-}
-.list > *:nth-child(odd) {
-  background-color: #fefefe;
-}
 .page-numbers {
-  display: -ms-flexbox;
   display: flex;
   list-style: none;
   font-size: 76%;
@@ -122,8 +118,15 @@ button:disabled {
 .page-numbers > *.active {
   background-color: #fff;
 }
+#NotFound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+}
 .navigation {
-  display: -ms-flexbox;
   display: flex;
   list-style: none;
 }
@@ -137,14 +140,10 @@ button:disabled {
   background-color: #667198;
   color: #fff;
 }
-#NotFound {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -ms-flex-align: center;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
-  text-align: center;
+.list > * {
+  padding: 4px 14px;
+  margin: 0;
+}
+.list > *:nth-child(odd) {
+  background-color: #fefefe;
 }
