@@ -1,10 +1,6 @@
-import React      from 'react';
+import React from 'react';
 
-import {
-    Switch,
-    Route,
-    Redirect
-}                 from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Navigation from './Common/Navigation';
 import Screen1    from './Screen1';

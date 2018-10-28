@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { ActionTypes, Urls } from '../../constants';
 
 import Pager from '../Pager';
 
@@ -61,7 +62,7 @@ class Screen1 extends React.Component {
         return (
             <div className="container">
 
-                <h2>Hello W!</h2>
+                <h2>Hello W! {Urls.service1}</h2>
                 <select value={perPage} onChange={this.handleChangePerPage}>
                     <option value={5}>5</option>
                     <option value={10}>10</option>

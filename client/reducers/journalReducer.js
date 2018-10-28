@@ -1,17 +1,12 @@
 const initialState = {    
-    data: {},
-    test: 'Игорь токарь',
-    filter: {
-        date: '20.12.2018',
-        age: 23,
-        name: 'Anatoly'
-    }
+    data: [],
+    spinner: false
 };
 
 export default function reducer(state = initialState, action) {
 
     switch (action.type) {
-        case "UPDATE_DATA_SCREEN2": {
+        case "JOURNAL": {
             return {
                 ...state,
                 ...action.payload

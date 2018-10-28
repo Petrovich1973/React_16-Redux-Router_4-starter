@@ -4,7 +4,7 @@
     "description": "starter kit",
     "main": "index.js",
     "scripts": {
-        "start": "webpack --mode production",
+        "start": "webpack --mode production --colors",
         "dev": "webpack --mode development --watch --colors",
         "server": "nodemon server"
     },
@@ -26,6 +26,7 @@
     "homepage": "https://github.com/Petrovich1973/React_16-Redux-Router_4-starter#readme",
     "dependencies": {
         "@babel/core": "^7.1.2",
+        "@babel/plugin-proposal-class-properties": "^7.1.0",
         "@babel/plugin-proposal-decorators": "^7.1.2",
         "@babel/preset-env": "^7.1.0",
         "@babel/preset-react": "^7.0.0",
@@ -39,6 +40,7 @@
         "body-parser": "^1.18.3",
         "cors": "^2.8.4",
         "css-loader": "^1.0.0",
+        "equals": "^1.0.5",
         "express": "^4.16.4",
         "extract-text-webpack-plugin": "^4.0.0-beta.0",
         "json-bigint": "^0.3.0",
@@ -47,8 +49,10 @@
         "less-loader": "^4.1.0",
         "method-override": "^3.0.0",
         "mini-css-extract-plugin": "^0.4.4",
+        "object-serialize": "^1.0.4",
         "path": "^0.12.7",
         "postcss-loader": "^3.0.0",
+        "qs": "^6.5.2",
         "react": "^16.6.0",
         "react-dom": "^16.6.0",
         "react-redux": "^5.1.0",
