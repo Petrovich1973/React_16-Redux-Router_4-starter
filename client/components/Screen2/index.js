@@ -149,6 +149,15 @@ class Screen2 extends React.Component {
                 value={this.state.name.value}
                 onchange={this.validateInput} />
 
+                <Input 
+                label="Наименование второго поля" 
+                classname={this.state.name.classname}
+                error={this.state.name.error}
+                message={this.state.name.message}
+                name="name"
+                value={this.state.name.value}
+                onchange={this.validateInput} />
+
 
                 <p>({r2[0].value.toString()})</p>
                 <p>({r1[0].value.toString()})</p>

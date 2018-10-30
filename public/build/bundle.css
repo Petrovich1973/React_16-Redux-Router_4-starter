@@ -38,6 +38,8 @@
 .inputBox {
   display: flex;
   align-items: center;
+  position: relative;
+  margin: 1rem 0;
 }
 .inputBox label {
   display: block;
@@ -61,6 +63,11 @@
 .inputBox.vertical .message {
   text-align: left;
   margin: 0;
+}
+.inputBox.vertical .message {
+  position: absolute;
+  top: 100%;
+  left: 0;
 }
 .inputBox.error {
   color: red;

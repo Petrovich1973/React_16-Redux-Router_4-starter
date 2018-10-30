@@ -3,6 +3,8 @@
 .inputBox {
 	display: flex;
 	align-items: center;
+	position: relative;
+	margin: 1rem 0;
 	label {
 		display: block;
 		margin-right: 1rem;
@@ -23,6 +25,11 @@
 		label, .message {
 			text-align: left;
 			margin: 0;
+		}
+		.message {			
+		    position: absolute;
+		    top: 100%;
+		    left: 0;
 		}
 	}
 	&.error {
