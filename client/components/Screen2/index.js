@@ -7,16 +7,58 @@ import qs from 'qs';
 import ObSer from 'object-serialize';
 import equal from 'equals';
 
+import Input from '../Input';
+
 import { changeFormField } from '../../actions/formAction';
 import { getJournal } from '../../actions/journalActions';
 
 class Screen2 extends React.Component {
 
     state = this.initialize = {
-        json: '[{ "value" : 922337203685477580701, "v2": 123 }]'
+        json: '[{ "value" : 922337203685477580701, "v2": 123 }]',
+        name: {
+            value: '',
+            required: true,
+            minlength: 2,
+            maxlength: 10,
+            classname: 'vertical',
+            message: null,
+            error: false
+        },
+        rules: {            
+            messages: {
+                required: "Поле не может быть пустым",
+                minlength: "Минимум 2 символа",
+                maxlength: "Максимум 10 символов"
+            }
+        }
+    }
+
+    validateInput = (element) => {
+
+        let required = this.state[element.name].required ? !element.value.length : false;
+        let minlength = element.value.length < this.state[element.name].minlength;
+        let maxlength = element.value.length > this.state[element.name].maxlength;
+        let message = [];
+        if(required) message.push(this.state.rules.messages.required)
+        if(minlength) message.push(this.state.rules.messages.minlength)
+        if(maxlength) message.push(this.state.rules.messages.maxlength)
+
+        let result = {
+            [element.name]: {
+               ...this.state[element.name],
+               value: element.value,
+               message: message.length ? message.join(', ') : null,
+               error: message.length
+            }
+        }
+        this.setState({
+            ...result
+        })
     }
 
     componentDidMount() {
+        document.title = 'Просмотр журнала';
         const search = qs.parse(this.props.history.location.search, { ignoreQueryPrefix: true });
         if(Object.keys(search).length) {
             this.props.dispatch( changeFormField({filter: {...this.props.screen2.filter, ...search}}) );
@@ -95,6 +137,17 @@ class Screen2 extends React.Component {
                         );
                     })}
                 </div>
+
+                {this.state.name.value}
+
+                <Input 
+                label="Наименование поля" 
+                classname={this.state.name.classname}
+                error={this.state.name.error}
+                message={this.state.name.message}
+                name="name"
+                value={this.state.name.value}
+                onchange={this.validateInput} />
 
 
                 <p>({r2[0].value.toString()})</p>
