@@ -4,7 +4,7 @@ export function getJournal(filter) {
     return function (dispatch, getState) {
         const store = getState();
         dispatch({ type: "JOURNAL", payload: {spinner: true} });
-        console.log(filter);
+        // console.log(filter);
         axios.get(`http://${location.host}/api/journal`, {
 		    	params: filter
 			})

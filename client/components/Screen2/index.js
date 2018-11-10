@@ -12,11 +12,13 @@ import Input from '../Input';
 import { changeFormField } from '../../actions/formAction';
 import { getJournal } from '../../actions/journalActions';
 
+import './style.less';
+
 class Screen2 extends React.Component {
 
     state = this.initialize = {
         json: '[{ "value" : 922337203685477580701, "v2": 123 }]',
-        name: {
+        name1: {
             value: '',
             required: true,
             minlength: 2,
@@ -25,35 +27,80 @@ class Screen2 extends React.Component {
             message: null,
             error: false
         },
+        name2: {
+            value: '',
+            required: false,
+            minlength: 4,
+            maxlength: 20,
+            classname: 'vertical',
+            message: null,
+            error: false,
+            success: false
+        },
+        name3: {
+            value: '',
+            required: false,
+            minlength: 3,
+            maxlength: 15,
+            classname: 'vertical',
+            message: null,
+            error: false,
+            success: false
+        },
+        name4: {
+            value: '',
+            required: false,
+            minlength: 4,
+            maxlength: 20,
+            classname: 'vertical',
+            message: null,
+            error: false,
+            success: false
+        },
         rules: {            
             messages: {
                 required: "Поле не может быть пустым",
-                minlength: "Минимум 2 символа",
-                maxlength: "Максимум 10 символов"
+                minlength: "Минимум $X\xa0символа",
+                maxlength: "Максимум $X\xa0символов"
             }
         }
     }
 
-    validateInput = (element) => {
+    validateInput = element => {
 
-        let required = this.state[element.name].required ? !element.value.length : false;
-        let minlength = element.value.length < this.state[element.name].minlength;
-        let maxlength = element.value.length > this.state[element.name].maxlength;
+        const {value, name} = element;
+        const {messages} = this.state.rules;
+        const _self = this.state[name];
+
+        const required = _self.required ? !value.length : false;
+        const minlength = value.length && value.length < _self.minlength;
+        const maxlength = value.length > _self.maxlength;
+
         let message = [];
-        if(required) message.push(this.state.rules.messages.required)
-        if(minlength) message.push(this.state.rules.messages.minlength)
-        if(maxlength) message.push(this.state.rules.messages.maxlength)
+
+        if(required) message.push(messages.required)
+        if(minlength) message.push(messages.minlength.replace('$X', _self.minlength))
+        if(maxlength) message.push(messages.maxlength.replace('$X', _self.maxlength))
 
         let result = {
-            [element.name]: {
-               ...this.state[element.name],
-               value: element.value,
+            [name]: {
+               ..._self,
+               value: value,
                message: message.length ? message.join(', ') : null,
-               error: message.length
+               error: message.length,
+               success: !message.length
             }
         }
+        if(!('success' in _self)) delete result[name].success;
         this.setState({
+            ...this.state,
             ...result
+        })
+    }
+
+    handleReset = () => {
+        this.setState({
+            ...this.initialize
         })
     }
 
@@ -137,26 +184,75 @@ class Screen2 extends React.Component {
                         );
                     })}
                 </div>
+                
+                <div className="form">
+                    <table className="table-form">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <Input 
+                                    name="name1"
+                                    label="Наименование 1 поля" 
+                                    {...this.state.name1}
+                                    onchange={this.validateInput} />
+                                </td>
+                                <td>
+                                    <Input 
+                                    name="name2"
+                                    label="Наименование 2 поля" 
+                                    {...this.state.name2}
+                                    onchange={this.validateInput} />
+                                </td>
+                                <td>
+                                    <Input 
+                                    name="name3"
+                                    label="Наименование 3 поля" 
+                                    {...this.state.name3}
+                                    onchange={this.validateInput} />
+                                </td>
+                                <td>
+                                    <Input 
+                                    name="name4"
+                                    label="Наименование 4 поля" 
+                                    {...this.state.name4}
+                                    onchange={this.validateInput} />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <Input 
+                                    name="name1"
+                                    label="Наименование 1 поля" 
+                                    {...this.state.name1}
+                                    onchange={this.validateInput} />
+                                </td>
+                                <td>
+                                    <Input 
+                                    name="name2"
+                                    label="Наименование 2 поля" 
+                                    {...this.state.name2}
+                                    onchange={this.validateInput} />
+                                </td>
+                                <td>
+                                    <Input 
+                                    name="name3"
+                                    label="Наименование 3 поля" 
+                                    {...this.state.name3}
+                                    onchange={this.validateInput} />
+                                </td>
+                                <td>
+                                    <Input 
+                                    name="name4"
+                                    label="Наименование 4 поля" 
+                                    {...this.state.name4}
+                                    onchange={this.validateInput} />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                {this.state.name.value}
-
-                <Input 
-                label="Наименование поля" 
-                classname={this.state.name.classname}
-                error={this.state.name.error}
-                message={this.state.name.message}
-                name="name"
-                value={this.state.name.value}
-                onchange={this.validateInput} />
-
-                <Input 
-                label="Наименование второго поля" 
-                classname={this.state.name.classname}
-                error={this.state.name.error}
-                message={this.state.name.message}
-                name="name"
-                value={this.state.name.value}
-                onchange={this.validateInput} />
+                <button disabled={ equal(this.state, this.initialize) } onClick={this.handleReset}>Reset</button>
 
 
                 <p>({r2[0].value.toString()})</p>

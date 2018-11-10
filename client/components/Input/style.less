@@ -5,15 +5,19 @@
 	align-items: center;
 	position: relative;
 	margin: 1rem 0;
+	line-height: 1;
 	label {
 		display: block;
 		margin-right: 1rem;
 		text-align: right;
+		overflow: hidden;
 	}
 	input {
 		display: block;
 		flex-grow: 1;
 		min-width: 2.3rem;
+		box-sizing: border-box;
+		line-height: inherit;
 	}
 	.message {
 		font-size: 70%;
@@ -37,6 +41,13 @@
 		input, input:focus {
 			border-color: red;
 			background-color: rgba(255, 255, 0, .1);
+		}
+	}
+	&.success {
+		color: green;
+		input, input:focus {
+			border-color: green;
+			background-color: rgba(6, 150, 52, .03);
 		}
 	}
 }

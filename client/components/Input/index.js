@@ -5,7 +5,8 @@ import './style.less';
 const Input = props => {
 
     return (
-        <div className={classNames('inputBox', props.classname || null, {'error': props.error || false})}>
+        <div 
+        className={classNames('inputBox', props.classname || null, {'error': props.error || false}, {'success': props.success || false})}>
 
             {props.label ? <label>{props.label}</label> : null}
             <input 
